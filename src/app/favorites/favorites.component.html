@@ -1,0 +1,16 @@
+<div class="w-100">
+    <div class="card mb-3" *ngFor="let favoriMovie of getFavoriMovies()">
+        <div class="row">
+          <div class="col-12">
+            <img src="{{ favoriMovie.imageUrl }}" alt="" class="img-fluid rounded-start" />
+          </div>
+          <div class="col-12">
+            <div class="card-body">
+              <button class="btn btn-sm btn-outline-primary">Details</button>
+              <i *ngIf="favoriMovie.isFavori;" class="fa-solid fa-heart-circle-minus ms-2 text-danger fs-20 pointer" 
+              title="Remove favorites" (click)="removeToFavorites(favoriMovie)"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div *ngIf="getMovies().length > 0; else no_movies">
+    <h1 class="text-primary">{{ title | uppercase }}</h1>
+    <!-- <h1>{{ 100 | currency: '₼' }}</h1> -->
+    <div class="alert alert-success">{{ getMovies().length }} movies found</div>
+  
+    <!-- <ng-template
+      [ngTemplateOutlet]="movieList2"
+      [ngTemplateOutletContext]="{ movies: popularMovies }"
+    ></ng-template> -->
+  
+    <div class="mb-3">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="filterText"
+        class="form-control"
+      />
+      <small class="text-muted" *ngIf="filterText"
+        >You searched {{ filterText | lowercase }}</small
+      >
+    </div>
+  
+    <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
+  </div>
+  
+  <ng-template class="alert alert-warning" #no_movies>
+    No movies found
+  </ng-template>
+  
+  <ng-template #movieList1>
+    <div class="card mb-3" *ngFor="let item of getMovies() | movieFilter: filterText">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="{{ item.imageUrl }}" alt="" class="img-fluid rounded-start" />
+        </div>
+  
+        <div class="col-md-9">
+          <div class="card-body">
+            <h2 class="card-title">{{ item.title }}</h2>
+            <p class="card-text">
+              {{ item.description }}
+            </p>
+            <p class="card-text">{{ item.datePublished | date: 'short' }}</p>
+            <button class="btn btn-sm btn-outline-primary">Details</button>
+            <i *ngIf="!item.isFavori;" class="fa-solid fa-heart-circle-plus ms-2 text-danger fs-20 pointer" 
+            title="Add favorites" (click)="addToFavorites(item)"></i>
+            <i *ngIf="item.isFavori;" class="fa-solid fa-heart-circle-minus ms-2 text-danger fs-20 pointer" 
+            title="Remove favorites" (click)="removeToFavorites(item)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  
+  <ng-template #movieList2 let-mymovies="movies">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+      <div *ngFor="let item of mymovies" class="col">
+        <div class="card h-100">
+          <img src="{{ item.imageUrl }}" alt="" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title | uppercase }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  
+  <!-- <ng-template #movieList3 let-popularFilms="movies">
+    <div class="card mb-3" *ngFor="let item of popularFilms">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="{{ item.imageUrl }}" alt="" class="img-fluid rounded-start" />
+        </div>
+  
+        <div class="col-md-10">
+          <div class="card-body">
+            <h2 class="card-title">{{ item.title }}</h2>
+            <p class="card-text">
+              {{ item.description }}
+            </p>
+            <button class="btn btn-sm btn-outline-primary">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template> -->
+  
