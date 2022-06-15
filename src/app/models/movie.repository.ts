@@ -42,7 +42,7 @@ export class MovieRepository {
         isPopular: true,
         datePublished: new Date(1999, 10, 16),
         isFavori: false,
-        IMDBRating: 5.6
+        IMDBRating: 0.6
       },
     ];
   }

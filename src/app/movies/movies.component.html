@@ -36,7 +36,7 @@
   
         <div class="col-md-9">
           <div class="card-body">
-            <h2 class="card-title">{{ item.title }}</h2>
+            <h2 class="card-title">{{ item.title }}<i class="fa-solid {{favoriClasses}}" *ngFor="let favoriClasses of getFavoriClasses(item.IMDBRating)"></i></h2>
             <p class="card-text">
               {{ item.description }}
             </p>

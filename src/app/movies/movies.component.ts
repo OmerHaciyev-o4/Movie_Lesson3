@@ -92,4 +92,39 @@ export class MoviesComponent implements OnInit {
     movie.isFavori = false;
     localStorage.setItem("favoritesList", JSON.stringify(DBFavorites));
   }
+
+  getFavoriClasses(favoriCount: number){
+    favoriCount /= 2;
+    var favoriClasses = new Array<String>();
+
+    // var result = this.getResult(favoriCount);
+
+    while (favoriCount >= 1) {
+      favoriCount--;
+      favoriClasses.push("fa-star text-warning");
+    }
+    
+    if (favoriCount != 0) {
+      favoriClasses.push("fa-star-half-stroke text-warning");      
+    }
+
+    return favoriClasses;
+  }
+
+  getResult(favoriCount: number){
+    var result: String[];
+    var count: number;
+    var isExtensionNumber: boolean;
+
+    while (favoriCount >= 1) {
+      favoriCount--;
+      count++;
+    }
+
+    if (favoriCount != 0) {
+      
+    }
+
+    return 0;
+  }
 }
